@@ -1,5 +1,5 @@
-# My advent of code 2023
-## See my solutions 
+# My advent of code 2023 ⛷️
+## ❄️ See my solutions ❄️
 
 ### Legends
 > 🎁 [Mathis Advent of Code 2023](https://github.com/RealDragonMA/Advent-of-code-2023)\
