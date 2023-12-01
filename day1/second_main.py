@@ -16,15 +16,12 @@ word_digit_pairs = [
 with open('data.txt') as f:
     lines = f.readlines()
 
-
 for line in lines:
     numbers = re.findall(r'[\d+]|one|two|three|four|five|six|seven|eight|nine', line)
-    print(line)
-    print(numbers)
 
     if len(numbers) == 1:
         n = numbers[0]
-        if n in [word for word, digit in word_digit_pairs]:
+        if not n.isdigit():
             for word, digit in word_digit_pairs:
                 n = n.replace(word, digit)
         s = n + n
@@ -34,10 +31,10 @@ for line in lines:
         n = numbers[0]
         n1 = numbers[len(numbers) - 1]
 
-        if n in [word for word, digit in word_digit_pairs]:
+        if not n.isdigit():
             for word, digit in word_digit_pairs:
                 n = n.replace(word, digit)
-        if n1 in [word for word, digit in word_digit_pairs]:
+        if not n1.isdigit():
             for word, digit in word_digit_pairs:
                 n1 = n1.replace(word, digit)
         s = n + n1
