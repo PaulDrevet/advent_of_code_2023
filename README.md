@@ -8,3 +8,8 @@
 
 ### Let's COOOOOOOODE !
 ![Exemple de GIF](scott.gif)
+
+### Day 1 
+#### First Part - EZ
+#### Second Part - Ugly but working
+
