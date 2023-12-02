@@ -15,7 +15,6 @@ with open('data.txt') as f:
 
 for line in lines:
     current = ""
-    print(line, end="")
     for c in line:
         current = current + c
         if any((match := substring) in current for substring in classicList):
@@ -33,7 +32,6 @@ for line in lines:
     if not m.isdigit():
         for word, digit in matchingList:
             m = m.replace(word, str(digit))
-    print(n+m)
     s = s + int(n+m)
 
 print(s)
