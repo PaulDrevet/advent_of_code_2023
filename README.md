@@ -14,3 +14,7 @@
 #### First Part - EZ
 #### Second Part - Ugly but working
 
+### Day 2
+#### First Part - EZ
+#### Second Part - EZ
+
