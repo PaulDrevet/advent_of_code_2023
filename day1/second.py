@@ -1,3 +1,6 @@
+with open('data.txt') as f:
+    lines = f.readlines()
+
 classicList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "one", "two", "three", "four", "five", "six", "seven",
                "eight",
                "nine"]
@@ -10,8 +13,6 @@ matchingList = [("one", 1), ("two", 2), ("three", 3), ("four", 4), ("five", 5), 
 s = 0
 m = 0
 n = 0
-with open('data.txt') as f:
-    lines = f.readlines()
 
 for line in lines:
     current = ""

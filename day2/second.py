@@ -1,7 +1,7 @@
-res = 0
-
 with open('data.txt') as f:
     lines = f.readlines()
+
+res = 0
 
 for line in lines:
     red = 1

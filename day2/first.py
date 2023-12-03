@@ -1,11 +1,10 @@
+with open('data.txt') as f:
+    lines = f.readlines()
+
 red = 12
 green = 13
 blue = 14
 res = 0
-
-
-with open('data.txt') as f:
-    lines = f.readlines()
 
 for line in lines:
     valid = True

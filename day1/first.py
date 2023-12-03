@@ -1,8 +1,9 @@
 import re
-ret = 0
 
 with open('data.txt') as f:
     lines = f.readlines()
+
+ret = 0
 
 for line in lines:
     numbers = re.findall(r'[\d+]', line)
