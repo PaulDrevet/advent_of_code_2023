@@ -27,27 +27,6 @@
 #### Second Part - EZ
 
 ### Day 5
-#### First Part - EZ
-#### Second Part - EZ
-
-### Day 5
-#### First Part - EZ
-#### Second Part - EZ
-
-### Day 5
-#### First Part - EZ
-#### Second Part - EZ
-
-### Day 5
-#### First Part - EZ
-#### Second Part - EZ
-
-### Day 5
-#### First Part - EZ
-#### Second Part - EZ
-
-### Day 5
-#### First Part - EZ
-#### Second Part - EZ
-
+#### First Part - 
+#### Second Part - 
 
