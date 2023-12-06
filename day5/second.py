@@ -1,3 +1,4 @@
+import threading
 with open('data.txt') as f:
     lines = f.readlines()
 
@@ -16,22 +17,25 @@ for i in range(1, len(lines)):
             a[key] += [aLine]
             i += 1
 
-for i in range(len(seeds)):
-    if i % 2 == 0:
-        seeds2.append(seeds[i])
-        seeds2.append(int(seeds[i])+int(seeds[i]))
+def seedToLocation(seed, length):
+    res = 1000000000000000000000000000000000000000000000000000000000000000000000000
+    print("Thread started" + str(seed))
+    for j in range(seed, seed+length):
+        for m in a:
+            for mapLine in a[m]:
+                if int(mapLine[1]) <= j <= int(mapLine[1])+int(mapLine[2]):
+                    j = int(mapLine[0]) + (j - int(mapLine[1]))
+                    break
+            if m == "humidity-to-location map:":
+                if j < res:
+                    res = j
+    print(res)
 
-print(seeds2)
-for seed in seeds2:
-    seed = int(seed)
-    for m in a:
-        for mapLine in a[m]:
-            if int(mapLine[1]) <= seed <= int(mapLine[1])+int(mapLine[2]):
-                seed = int(mapLine[0]) + (seed - int(mapLine[1]))
-                break
-        if m == "humidity-to-location map:":
-            if seed < res:
-                res = seed
 
-print(res)
+for i in range(0, len(seeds), 2):
+    seed = int(seeds[i])
+    length = int(seeds[i+1])
+    threading.Thread(target=seedToLocation, args=(seed, length)).start()
+
+
 
