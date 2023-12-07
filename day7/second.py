@@ -4,6 +4,75 @@ with open('data.txt') as f:
     lines = f.readlines()
 
 
+def isFive(hand):
+    for i in hand:
+        if hand.count(i) == 5 or (hand.count(i) + hand.count('J') == 5 and i != 'J'):
+            return True
+    return False
+
+
+def isFour(hand):
+    for i in hand:
+        if hand.count(i) == 4 or (hand.count(i) + hand.count('J') == 4 and i != 'J'):
+            return True
+    return False
+
+
+def isForOfKind(hand):
+    for i in hand:
+        if hand.count(i) == 4 or (hand.count(i) + hand.count('J') == 4 and i != 'J'):
+            return True
+    return False
+
+
+def isFull(hand):
+    diff = {}
+    for i in hand:
+        if i != 'J':
+            diff[i] = hand.count(i)
+    if len(diff) > 2:
+        return False
+    return True
+
+
+def isThree(hand):
+    for i in hand:
+        if hand.count(i) == 3 or (hand.count(i) + hand.count('J') == 3 and i != 'J'):
+            return True
+    return False
+
+
+def isTwoPair(hand):
+    previous = ""
+    for i in hand:
+        if hand.count(i) == 2 and i != previous and previous != "":
+            return True
+        elif hand.count(i) == 2 and previous == "":
+            previous = i
+    return False
+
+
+def isOnePair(hand):
+    for i in hand:
+        if hand.count(i) == 2 or (hand.count(i) + hand.count('J') == 2 and i != 'J'):
+            return True
+    return False
+
+def getValue(hand):
+    if isFive(hand):
+        return 6
+    elif isFour(hand):
+        return 5
+    elif isFull(hand):
+        return 4
+    elif isThree(hand):
+        return 3
+    elif isTwoPair(hand):
+        return 2
+    elif isOnePair(hand):
+        return 1
+    else: return 0
+
 def greaterThan(a, b):
     for i in range(0, len(a)):
         if a[i] == b[i]:
@@ -14,11 +83,11 @@ def greaterThan(a, b):
             return True
         if a[i] == "Q" and b[i] not in ["A", "K"]:
             return True
-        if a[i] == "J" and b[i] not in ["A", "K", "Q"]:
+        if a[i] == "T" and b[i] not in ["A", "K", "Q"]:
             return True
-        if a[i] == "T" and b[i] not in ["A", "K", "Q", "J"]:
+        if a[i] > b[i] and a[i].isdigit() and b[i].isdigit():
             return True
-        if a[i] > b[i] and b[i].isdigit():
+        if b[i] == "J":
             return True
         return False
 
@@ -56,27 +125,9 @@ def getCardValue():
         d = d.fromkeys(d, 0)
         hand = line.split(" ")[0]
         bid = line.split(" ")[1]
-        for card in hand:
-            if card in d:
-                d[card] += 1
-            else:
-                d[card] = 1
-        keys = [k for k, v in d.items() if v == 2]
-        power = 0
-        if 5 in d.values():
-            power = 6
-        elif 4 in d.values():
-            power = 5
-        elif 3 in d.values() and 2 in d.values():
-            power = 4
-        elif 3 in d.values():
-            power = 3
-        elif len(keys) == 2:
-            power = 2
-        elif 2 in d.values():
-            power = 1
+
+        hands[hand] = getValue(hand)
         hands[hand + "b"] = bid.rstrip()
-        hands[hand] = power
     return hands
 
 
