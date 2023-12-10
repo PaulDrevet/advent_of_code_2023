@@ -1,10 +1,11 @@
+from math import lcm
+
+
 with open('data.txt') as f:
     lines = f.readlines()
 
 instructions = lines[0].replace("L","0").replace("R","1")
-print(instructions)
 map = {}
-res = 0
 
 for i in range(2, len(lines)):
     node = lines[i].split(" ")[0]
@@ -21,15 +22,16 @@ print(currents)
 
 i = 0
 allZ = False
+results = []
+alreadyFound = []
 while not allZ:
     allZ = True
     for j in range(0, len(currents)):
-        currents[j] = map[currents[j]][int(instructions[i % (len(instructions)-1)])]
         if currents[j][2] != "Z":
+            currents[j] = map[currents[j]][int(instructions[i % (len(instructions)-1)])]
             allZ = False
+        elif currents[j] not in alreadyFound:
+            alreadyFound.append(currents[j])
+            results.append(i)
     i += 1
-
-
-
-print(currents)
-print(i)
+print(lcm(results[0], results[1], results[2], results[3], results[4], results[5]))
