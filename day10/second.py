@@ -136,18 +136,10 @@ def findInter(path):
                 for k in range(j+1, len(lines[i])):
                     t = (i, k)
                     if t in path:
-                        print(i, k, getSymbolByTuple(t))
-                        if getSymbolByTuple(t) == "7" or getSymbolByTuple(t) == "J":
-                            print()
-                        else:
+                        if getSymbolByTuple(t) != "-":
+                            print(i, k, getSymbolByTuple(t))
                             s += 1
-                            k += 1
-                            t = (i, k)
-
-                        while k < len(lines[i]) and getSymbolByTuple(t) != "7" and getSymbolByTuple(t) != "J":
-                            k += 1
-                            t = (i, k)
-
+                print(s, "\n")
                 if s % 2 == 1:
                     res += 1
                     print(i, j, s, "res++", getSymbolByTuple((i,j)))
