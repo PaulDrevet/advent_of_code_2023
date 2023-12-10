@@ -25,11 +25,10 @@ while not allZ:
     allZ = True
     for j in range(0, len(currents)):
         currents[j] = map[currents[j]][int(instructions[i % (len(instructions)-1)])]
-
-    i += 1
-    for c in currents:
-        if c[2] != "Z":
+        if currents[j][2] != "Z":
             allZ = False
+    i += 1
+
 
 
 print(currents)
