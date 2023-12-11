@@ -116,12 +116,22 @@ def solve():
     paths = getPaths(currentLocation)
     path = [paths[0]]
     path.insert(0, currentLocation)
-
     while getSymbol(path) != "S":
         path.append(getNextDirection(path))
 
+    refactorMaze()
+
     print(len(path)//2)
     print(findInter(path))
+
+
+def refactorMaze():
+    for i in range(0, len(lines)):
+        lines[i] = lines[i].rstrip()
+        for j in range(0, len(lines[i])):
+            if lines[i][j] == "S":
+                lines[i] = lines[i].replace("S","7")
+        print(lines[i])
 
 
 def findInter(path):
@@ -130,19 +140,14 @@ def findInter(path):
 
     res = 0
     for i in range(0, len(lines)):
+        isInside = False
         for j in range(0, len(lines[i])):
-            if (i, j) not in path:
-                s = 0
-                for k in range(j+1, len(lines[i])):
-                    t = (i, k)
-                    if t in path:
-                        if getSymbolByTuple(t) != "-":
-                            print(i, k, getSymbolByTuple(t))
-                            s += 1
-                print(s, "\n")
-                if s % 2 == 1:
-                    res += 1
-                    print(i, j, s, "res++", getSymbolByTuple((i,j)))
+            if (getSymbolByTuple((i, j)) == "F" or getSymbolByTuple((i, j)) == "7" or getSymbolByTuple((i, j)) == "|") and (i, j) in path:
+                isInside = not isInside
+
+            if isInside and ((i, j) not in path):
+                print(i, j, getSymbolByTuple((i, j)))
+                res += 1
     return res
 
 
