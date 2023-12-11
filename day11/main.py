@@ -48,6 +48,8 @@ def findShortestPath(pairs):
     for pair in pairs:
         s = abs(pair[1][0] - pair[0][0]) + abs(pair[1][1] - pair[0][1])
         res += s
+        print(pair, s)
+
     return res
 
 
