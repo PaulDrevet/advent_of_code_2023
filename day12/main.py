@@ -13,8 +13,25 @@ def check(springs, group):
             return False
     return True
 
+
 def rec(springs, group):
-    
+    if springs == "" and len(group) == 0:
+        return 1
+    if springs == "" or len(group) == 0:
+        print(springs, group)
+        return 0
+    if springs[0] == ".":
+        return rec(springs[1:], group)
+    if springs[0] == "?":
+        return rec("#" + springs[1:], group) + rec("." + springs[1:], group)
+    if springs[0] == "#":
+        i = 0
+        while springs[i] == "#" and i < len(springs)-1:
+            i += 1
+        if i >= int(group[0]):
+            return rec(springs[i:], group[1:])
+        else:
+            return rec(springs[1:], group)
 
 
 
@@ -38,12 +55,16 @@ def getCompletedSpring(springs, group):
 
 
 
+
 def solve():
+    res = 0
     for line in lines:
         springs = line.split(" ")[0]
         group = line.split(" ")[1].rstrip().split(",")
 
-        getCompletedSpring(springs, group)
-
+        s = rec(springs, group)
+        print(s)
+        res =+ s
+    print(res)
 
 solve()
