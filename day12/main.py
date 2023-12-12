@@ -2,24 +2,11 @@ with open("data.txt") as f:
     lines = f.readlines()
 
 
-def check(springs, group):
-    springs = springs.split(".")
-    while ("" in springs):
-        springs.remove("")
-    if len(springs) != len(group):
-        return False
-    for i in range(len(springs)):
-        if len(springs[i]) != int(group[i]):
-            return False
-    return True
-
-
 def rec(springs, group):
     print(springs, group)
     if springs == "" and len(group) == 0:
         return 1
     if len(group) == 0 and springs[0] == ".":
-        print(springs, group)
         return rec(springs[1:], group)
     if len(group) == 0 or springs == "":
         return 0
@@ -29,7 +16,7 @@ def rec(springs, group):
         return rec("#" + springs[1:], group) + rec("." + springs[1:], group)
     if springs[0] == "#":
         i = 0
-        while springs[i] == "#" and i < len(springs)-1:
+        while (springs[i] == "#" or springs[i] == "?") and i < len(springs)-1 and i <= int(group[0]):
             i += 1
         if springs[i] == "#":
             i += 1
@@ -39,30 +26,7 @@ def rec(springs, group):
             else:
                 return rec(springs[int(group[0]):], group[1:])
         else:
-            return rec(springs[1:], group)
-
-
-
-
-def getCompletedSpring(springs, group):
-    springTest = ""
-    print(springs)
-
-    for i in range(len(springs)):
-        if springs[i] == "?":
-            springTest = springs[:i] + "#" + springs[i+1:]
-            for j in range(i, len(springs)):
-                if springs[j] == "?":
-                    springTest = springTest[:j] + "#" + springTest[j+1:]
-                    print(springTest)
-        if springs[i] == "?":
-            for j in range(i, len(springs)):
-                if springs[j] == "?":
-                    springTest = springTest[:j] + "#" + springTest[j+1:]
-                    print(springTest)
-    print()
-
-
+            return 0
 
 
 def solve():
