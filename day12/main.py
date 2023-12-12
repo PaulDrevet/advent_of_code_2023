@@ -17,20 +17,15 @@ def rec(springs, group):
         return rec("#" + springs[1:], group) + rec("." + springs[1:], group)
     if springs[0] == "#":
         i = 0
-        while (springs[i] == "#" or springs[i] == "?") and i < len(springs)-1 and i <= int(group[0]):
+        while (springs[i] == "#" or springs[i] == "?") and i < len(springs)-1 and i < int(group[0]):
             i += 1
         if springs[i] == "#":
             i += 1
         print(i, int(group[0]))
-        if i >= int(group[0]):
-
+        if i == int(group[0]):
             if i < len(springs):
-                print(springs[i])
                 print("return 2")
-                if springs[i] != "#":
-                    return rec("." + springs[int(group[0])+1:], group[1:])
-                else:
-                    return 0
+                return rec("." + springs[int(group[0])+1:], group[1:])
             else:
                 print("return 3")
                 return rec(springs[int(group[0]):], group[1:])
@@ -40,14 +35,14 @@ def rec(springs, group):
 
 
 def solve():
-    res = 0
+    res = []
     for line in lines:
         springs = line.split(" ")[0]
         group = line.split(" ")[1].rstrip().split(",")
 
         s = rec(springs, group)
-        print(s)
-        res += s
+        res.append(s)
+        print("\n\n\n\n")
     print(res)
 
 solve()
