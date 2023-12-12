@@ -5,6 +5,7 @@ with open("data.txt") as f:
 def rec(springs, group):
     print(springs, group)
     if springs == "" and len(group) == 0:
+        print("working")
         return 1
     if len(group) == 0 and springs[0] == ".":
         return rec(springs[1:], group)
@@ -20,12 +21,21 @@ def rec(springs, group):
             i += 1
         if springs[i] == "#":
             i += 1
+        print(i, int(group[0]))
         if i >= int(group[0]):
+
             if i < len(springs):
-                return rec("." + springs[int(group[0])+1:], group[1:])
+                print(springs[i])
+                print("return 2")
+                if springs[i] != "#":
+                    return rec("." + springs[int(group[0])+1:], group[1:])
+                else:
+                    return 0
             else:
+                print("return 3")
                 return rec(springs[int(group[0]):], group[1:])
         else:
+            print("return 4")
             return 0
 
 
