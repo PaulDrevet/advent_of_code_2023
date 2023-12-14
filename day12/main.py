@@ -9,6 +9,8 @@ def aRec(springs, group):
         return 1
     if len(group) == 0 and springs[0] == ".":
         return aRec(springs[1:], group)
+    if len(group) == 0 and springs[0] == "?":
+        return aRec(springs[1:], group)
     if len(group) == 0 or springs == "":
         return 0
     if int(group[0]) > len(springs):
@@ -19,7 +21,7 @@ def aRec(springs, group):
         return aRec("#" + springs[1:], group) + aRec("." + springs[1:], group)
     if springs[0] == "#":
         ok = True
-        for i in range(0, int(group[0])-1):
+        for i in range(0, int(group[0])):
             if springs[i] == ".":
                 ok = False
         if int(group[0]) < len(springs):
@@ -74,5 +76,7 @@ def solve():
         res.append(s)
         print("\n\n\n\n")
     print(res)
+    print(sum(res))
+
 
 solve()

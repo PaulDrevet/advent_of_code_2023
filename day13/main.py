@@ -19,27 +19,47 @@ def reformat(pattern):
         pattern[i] = pattern[i].rstrip()
     return pattern
 
+def turn(pattern):
+    newPattern = list(zip(*pattern[::-1]))
+    return ["".join(x) for x in newPattern]
+
+
+
+
 
 def getReflection(pattern):
     pattern = reformat(pattern)
-    print(pattern)
-    for i in range(0, len(pattern)):
-        if i < len(pattern)//2:
-            print(pattern[:i],  "|||" ,pattern[i+1:])
-            if pattern[:i] == pattern[i+1:]:
+    for i in range(1, len(pattern)):
+        if i <= len(pattern)//2:
+            p1 = pattern[:i]
+            p2 = pattern[i:2*i]
+            if p1 == p2:
                 print("reflection")
-                return
-        else:
-            print(pattern[:i],  "|||" ,pattern[i+1:])
 
+    pattern.reverse()
+    for i in range(1, len(pattern)):
+        if i <= len(pattern)//2:
+            p1 = pattern[:i]
+            p2 = pattern[i:2*i]
+            p2.reverse()
+            if p1 == p2:
+                print("reflection", len(pattern)-i)
+
+
+
+    print("\n\n")
 
 
 
 
 def solve():
     patterns = splitLines(lines)
+    print(patterns)
     for p in patterns:
         getReflection(p)
+        newP = turn(p)
+    for a in newP:
+        print(a)
 
 
 solve()
