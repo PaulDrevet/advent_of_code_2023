@@ -74,7 +74,7 @@ def print_map():
 
 
 def solve():
-    sys.setrecursionlimit(10000)
+    sys.setrecursionlimit(10000000)
     laser((0, 0), "right")
     print(len(energized))
 
