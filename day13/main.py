@@ -18,7 +18,6 @@ def reformat(pattern):
     return pattern
 
 
-
 def turn(pattern):
     newP = []
     print(pattern)
