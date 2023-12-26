@@ -1,4 +1,6 @@
 # ⛷️ My advent of code 2023 ⛷️
+# ⭐ 28 STARS ⭐
+
 ## ❄️ See my solutions ❄️
 
 ### 🐐 GOATS 🐐
